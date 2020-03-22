@@ -7,13 +7,14 @@ module Tinwe
   # displays statistical data based on the options proveded.
   class Command
     def self.execute(args)
-      db = SQLite3::Database.new args.first
-      db.execute <<-SQL
-        SELECT name
-        FROM sqlite_master
-        WHERE type ='table' AND
-          name NOT LIKE 'sqlite_%';
-      SQL
+      parser = Parser.new(args)
+
+      case parser.command
+      when '--version'
+        Tinwe::VERSION
+      else
+        raise CommandError, "unknown command\n\n#{parser.parser}"
+      end
     end
   end
 end

@@ -9,5 +9,7 @@ module Tinwe
   VERSION = '0.0.1'
   HOME = 'https://github.com/namel3ss/tinwe'
 
+  require_relative 'tinwe/command_error'
+  require_relative 'tinwe/parser'
   require_relative 'tinwe/command'
 end
