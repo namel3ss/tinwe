@@ -10,3 +10,7 @@ group :development do
   gem 'byebug'
   gem 'rubocop'
 end
+
+group :development, :test do
+  gem 'rspec'
+end
