@@ -9,6 +9,7 @@ gem 'sqlite3'
 group :development do
   gem 'byebug'
   gem 'rubocop'
+  gem 'rubocop-rspec'
 end
 
 group :development, :test do
