@@ -1,3 +1,5 @@
 # frozen_string_literal: true
 
-class CommandError < StandardError; end
+module Tinwe
+  class CommandError < StandardError; end
+end
