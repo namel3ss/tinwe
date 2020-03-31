@@ -11,18 +11,27 @@ module Tinwe
     end
 
     def execute
-      case parser.command
-      when 'version'
-        Tinwe::VERSION
-      when 'shell'
-        require 'irb'
-        IRB.start
-      else
+      unless respond_to?(parser.command, true)
         raise Tinwe::CommandError, "unknown command\n\n#{parser.parser}"
       end
+
+      send(parser.command)
     end
 
     private
+
+    def stats
+      StatsCommand.new(parser.arguments).execute
+    end
+
+    def version
+      Tinwe::VERSION
+    end
+
+    def shell
+      require 'irb'
+      IRB.start
+    end
 
     def main_command_only?
       parser.command.nil? && parser.options.empty?

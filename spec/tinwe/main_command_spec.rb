@@ -19,6 +19,20 @@ RSpec.describe Tinwe::MainCommand do
   end
 
   describe '.execute' do
+    context 'stats command' do
+      let(:args) { ['stats'] }
+      let(:stats_command) { Tinwe::StatsCommand.new([]) }
+
+      it 'executes the stats command' do
+        allow(stats_command).to receive(:execute)
+        allow(Tinwe::StatsCommand).to receive(:new) { stats_command }
+        subject.execute
+
+        expect(Tinwe::StatsCommand).to have_received(:new).with([]).once
+        expect(stats_command).to have_received(:execute).once
+      end
+    end
+
     context 'version command' do
       let(:args) { ['-v'] }
 
