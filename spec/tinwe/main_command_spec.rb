@@ -6,6 +6,8 @@ RSpec.describe Tinwe::MainCommand do
   let(:subject) { described_class.new(args) }
   let(:args) { [] }
 
+  it_behaves_like 'command'
+
   describe '.new' do
     context 'with main command only' do
       it 'shows usage' do
