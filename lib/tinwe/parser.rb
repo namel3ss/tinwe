@@ -5,7 +5,7 @@ require 'optparse'
 module Tinwe
   # A class for parsing the options passed to the Tinwe command.
   class Parser
-    attr_reader :parser, :command, :options
+    attr_reader :parser, :command, :options, :arguments
 
     def initialize(args)
       @options = {}
@@ -16,7 +16,9 @@ module Tinwe
       end
 
       parser.parse!(args)
+
       @command ||= args.shift
+      @arguments = args
     end
 
     private

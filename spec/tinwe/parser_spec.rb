@@ -29,6 +29,11 @@ RSpec.describe Tinwe::Parser do
     expect(subject.methods).not_to include(:options=)
   end
 
+  it 'has read-only options arguments' do
+    expect(subject.methods).to include(:arguments)
+    expect(subject.methods).not_to include(:arguments=)
+  end
+
   describe 'parser' do
     it { expect(subject.parser.to_s).to eq(usage) }
   end
@@ -38,6 +43,7 @@ RSpec.describe Tinwe::Parser do
       it do
         expect(subject.command).to be_nil
         expect(subject.options).to be_empty
+        expect(subject.arguments).to be_empty
         expect(subject.parser).not_to be_nil
         expect(subject.parser).to be_kind_of(OptionParser)
       end
@@ -50,8 +56,21 @@ RSpec.describe Tinwe::Parser do
       it do
         expect(subject.command).to eq(command)
         expect(subject.options).to be_empty
+        expect(subject.arguments).to be_empty
         expect(subject.parser).not_to be_nil
         expect(subject.parser).to be_kind_of(OptionParser)
+      end
+    end
+
+    context 'with chain of commands' do
+      let(:command) { 'some_command' }
+      let(:subcommand) { 'other_command' }
+      let(:args) { [command, subcommand] }
+
+      it do
+        expect(subject.command).to eq(command)
+        expect(subject.arguments.size).to eq(1)
+        expect(subject.arguments.first).to eq(subcommand)
       end
     end
 
