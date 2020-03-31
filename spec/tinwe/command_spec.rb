@@ -1,41 +1,23 @@
 # frozen_string_literal: true
 
-require 'irb'
-
 RSpec.describe Tinwe::Command do
-  let(:subject) { described_class.new(args) }
-  let(:args) { [] }
+  subject { described_class.new([]) }
+
+  it 'has read-only parser attribute' do
+    expect(subject.methods).to include(:parser)
+    expect(subject.methods).not_to include(:parser=)
+  end
 
   describe '.new' do
-    context 'with main command only' do
-      it 'shows usage' do
-        expect { subject }
-          .to raise_error(Tinwe::CommandError,
-                          Tinwe::Parser.new(args).parser.to_s)
-      end
+    it 'sets the parser' do
+      expect(subject.parser).not_to be_nil
+      expect(subject.parser).to be_kind_of(Tinwe::Parser)
     end
   end
 
   describe '.execute' do
-    context 'version command' do
-      let(:args) { ['-v'] }
-
-      it 'returns the version' do
-        expect(subject.execute).to eq(Tinwe::VERSION)
-      end
-    end
-
-    context 'shell command' do
-      let(:args) { ['shell'] }
-
-      before do
-        allow(IRB).to receive(:start)
-      end
-
-      it 'stats a shell' do
-        subject.execute
-        expect(IRB).to have_received(:start)
-      end
+    it 'raises not implemented error' do
+      expect { subject.execute }.to raise_error('Not implemented yet.')
     end
   end
 end
