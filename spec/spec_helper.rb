@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'byebug'
-require_relative '../lib/tinwe'
+require_relative '../lib/loader'
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|

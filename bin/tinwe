@@ -2,8 +2,9 @@
 
 # frozen_string_literal: true
 
-require_relative '../lib/tinwe'
 require 'byebug'
+
+require_relative '../lib/loader.rb'
 
 begin
   $stdout.puts Tinwe::Command.new(ARGV).execute

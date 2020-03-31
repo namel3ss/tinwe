@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 
 ruby '~> 2.6.0'
 
+gem 'require_all'
 gem 'sqlite3'
 
 group :development do
