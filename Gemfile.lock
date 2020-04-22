@@ -9,7 +9,6 @@ GEM
     parser (2.7.0.4)
       ast (~> 2.4.0)
     rainbow (3.0.0)
-    require_all (3.0.0)
     rexml (3.2.4)
     rspec (3.9.0)
       rspec-core (~> 3.9.0)
@@ -37,17 +36,18 @@ GEM
     ruby-progressbar (1.10.1)
     sqlite3 (1.4.2)
     unicode-display_width (1.6.1)
+    zeitwerk (2.3.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   byebug
-  require_all
   rspec
   rubocop
   rubocop-rspec
   sqlite3
+  zeitwerk
 
 RUBY VERSION
    ruby 2.6.0p0

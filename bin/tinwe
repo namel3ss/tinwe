@@ -4,7 +4,7 @@
 
 require 'byebug'
 
-require_relative '../lib/loader.rb'
+require_relative '../lib/tinwe'
 
 begin
   $stdout.puts Tinwe::MainCommand.new(ARGV).execute

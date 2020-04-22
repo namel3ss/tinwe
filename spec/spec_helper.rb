@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'byebug'
-require_relative '../lib/loader'
+require_relative '../lib/tinwe'
 
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].sort.each { |f| require f }
 
