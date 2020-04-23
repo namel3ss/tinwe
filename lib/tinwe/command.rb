@@ -4,7 +4,11 @@ module Tinwe
   # Abstract class defining common interface for other commands.
   class Command
     class << self
-      attr_reader :parser_klass
+      attr_reader :parser_klass, :command_key
+
+      def key(value)
+        @command_key = value
+      end
 
       def parser(klass)
         @parser_klass = klass

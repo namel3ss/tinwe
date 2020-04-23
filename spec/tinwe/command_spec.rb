@@ -4,15 +4,31 @@ RSpec.describe Tinwe::Command do
   subject { described_class.new([]) }
 
   context 'class' do
-    it 'has a read-only parser attribute' do
-      expect(described_class.methods).to include(:parser_klass)
-      expect(described_class.methods).not_to include(:parser_klass=)
+    describe 'parser_klass' do
+      it 'is a read-only attribute' do
+        expect(described_class.methods).to include(:parser_klass)
+        expect(described_class.methods).not_to include(:parser_klass=)
+      end
     end
 
     describe '.parser' do
       it 'sets the parser_klass' do
         described_class.parser(Tinwe::Parser)
         expect(described_class.parser_klass).to eq(Tinwe::Parser)
+      end
+    end
+
+    describe 'command_key' do
+      it 'is a read-only attribute' do
+        expect(described_class.methods).to include(:command_key)
+        expect(described_class.methods).not_to include(:command_key=)
+      end
+    end
+
+    describe '.key' do
+      it 'sets the command_key' do
+        described_class.key('test')
+        expect(described_class.command_key).to eq('test')
       end
     end
   end
