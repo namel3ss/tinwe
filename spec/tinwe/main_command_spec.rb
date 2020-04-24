@@ -12,6 +12,11 @@ RSpec.describe Tinwe::MainCommand do
       .to include(Tinwe::VersionCommand.command_key)
   end
 
+  it 'has a shell command' do
+    expect(described_class.instance_methods)
+      .to include(Tinwe::ShellCommand.command_key)
+  end
+
   it 'has a parser' do
     expect(described_class.parser_klass).to eq(Tinwe::Parser)
   end
