@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 require 'byebug'
+
+require 'simplecov'
+SimpleCov.start
+
 require_relative '../lib/tinwe'
 
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].sort.each { |f| require f }
