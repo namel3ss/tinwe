@@ -5,7 +5,7 @@ module Tinwe
   # and invokes other commands when needed.
   class MainCommand < CommandGroup
     commands VersionCommand, ShellCommand
-    parser Parser
+    parser MainCommandParser
     key :main
   end
 end

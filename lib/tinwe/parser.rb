@@ -5,14 +5,13 @@ require 'optparse'
 module Tinwe
   # A class for parsing the options passed to the Tinwe command.
   class Parser
-    attr_reader :parser, :command, :options, :arguments
+    attr_reader :parser, :command, :arguments
 
     def initialize(args)
-      @options = {}
       @parser = OptionParser.new do |opts|
         opts.banner = 'tinwe [options] command [command arguments]'
 
-        tinwe_options(opts)
+        options(opts)
       end
 
       parser.parse!(args)
@@ -23,16 +22,6 @@ module Tinwe
 
     private
 
-    def tinwe_options(opts)
-      opts.separator ''
-      opts.separator 'Options for tinwe:'
-      opts.separator ''
-
-      opts.on(
-        '--version',
-        '-v',
-        'Display version'
-      ) { @command = 'version' }
-    end
+    def options(opts); end
   end
 end

@@ -18,7 +18,7 @@ RSpec.describe Tinwe::MainCommand do
   end
 
   it 'has a parser' do
-    expect(described_class.parser_klass).to eq(Tinwe::Parser)
+    expect(described_class.parser_klass).to eq(Tinwe::MainCommandParser)
   end
 
   it 'has a key' do
