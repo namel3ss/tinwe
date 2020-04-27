@@ -2,23 +2,23 @@
 
 require 'irb'
 
-RSpec.describe Tinwe::MainCommand do
+RSpec.describe Tinwe::Commands::Main do
   it 'is a Tinwe::CommandGroup' do
-    expect(described_class).to be < Tinwe::CommandGroup
+    expect(described_class).to be < Tinwe::Commands::Group
   end
 
   it 'has a version command' do
     expect(described_class.instance_methods)
-      .to include(Tinwe::VersionCommand.command_key)
+      .to include(Tinwe::Commands::Version.command_key)
   end
 
   it 'has a shell command' do
     expect(described_class.instance_methods)
-      .to include(Tinwe::ShellCommand.command_key)
+      .to include(Tinwe::Commands::Shell.command_key)
   end
 
   it 'has a parser' do
-    expect(described_class.parser_klass).to eq(Tinwe::MainCommandParser)
+    expect(described_class.parser_klass).to eq(Tinwe::Parsers::Main)
   end
 
   it 'has a key' do

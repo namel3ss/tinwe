@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-RSpec.describe Tinwe::Parser do
+RSpec.describe Tinwe::Parsers::Base do
   subject { described_class.new(args) }
 
   let(:args) { [] }
   let(:usage) do
     <<~MSG
-      tinwe [options] command [command arguments]
+      tinwe
     MSG
   end
 

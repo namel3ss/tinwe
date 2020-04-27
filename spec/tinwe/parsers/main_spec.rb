@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-RSpec.describe Tinwe::MainCommandParser do
+RSpec.describe Tinwe::Parsers::Main do
   subject { described_class.new(args) }
 
   let(:args) { [] }
   let(:usage) do
     <<~MSG
-      tinwe [options] command [command arguments]
+      tinwe [options] command
 
       Available commands:
 
@@ -18,7 +18,7 @@ RSpec.describe Tinwe::MainCommandParser do
     MSG
   end
 
-  it { expect(Tinwe::MainCommandParser).to be < Tinwe::Parser }
+  it { expect(described_class).to be < Tinwe::Parsers::Base }
 
   describe 'parser' do
     it { expect(subject.parser.to_s).to eq(usage) }

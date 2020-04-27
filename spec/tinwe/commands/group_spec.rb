@@ -1,17 +1,17 @@
 # frozen_string_literal: true
 
-RSpec.describe Tinwe::CommandGroup do
+RSpec.describe Tinwe::Commands::Group do
   subject { described_class.new(args) }
 
   let(:args) { %w[command] }
 
   before do
-    described_class.parser(Tinwe::Parser)
+    described_class.parser(Tinwe::Parsers::Base)
   end
 
   context 'class' do
-    let(:command1) { Class.new(Tinwe::Command) { key :command1 } }
-    let(:command2) { Class.new(Tinwe::Command) { key :command2 } }
+    let(:command1) { Class.new(Tinwe::Commands::Base) { key :command1 } }
+    let(:command2) { Class.new(Tinwe::Commands::Base) { key :command2 } }
 
     describe '.commands' do
       it 'defines method for each command' do
@@ -24,8 +24,17 @@ RSpec.describe Tinwe::CommandGroup do
     end
   end
 
+  describe '.new' do
+    context 'with no args' do
+      let(:args) { [] }
+      it 'raises an error' do
+        expect { subject }.to raise_error Tinwe::Errors::CommandError
+      end
+    end
+  end
+
   describe '.execute' do
-    let(:command) { Class.new(Tinwe::Command) { key :dummy_command } }
+    let(:command) { Class.new(Tinwe::Commands::Base) { key :dummy_command } }
 
     before do
       described_class.commands(command)
@@ -44,7 +53,8 @@ RSpec.describe Tinwe::CommandGroup do
       let(:args) { %w[random_command] }
 
       it 'raises an exception' do
-        expect { subject.execute }.to raise_error Tinwe::UnknownCommandError
+        expect { subject.execute }
+          .to raise_error Tinwe::Errors::UnknownCommand
       end
     end
   end

@@ -2,9 +2,9 @@
 
 require 'irb'
 
-RSpec.describe Tinwe::ShellCommand do
+RSpec.describe Tinwe::Commands::Shell do
   it { expect(described_class.parser_klass).to be_nil }
-  it { expect(described_class).to be < Tinwe::Command }
+  it { expect(described_class).to be < Tinwe::Commands::Base }
   it { expect(described_class.command_key).to eq(:shell) }
 
   describe '.execute' do

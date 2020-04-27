@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Tinwe::Command do
+RSpec.describe Tinwe::Commands::Base do
   subject { described_class.new([]) }
 
   context 'class' do
@@ -13,8 +13,8 @@ RSpec.describe Tinwe::Command do
 
     describe '.parser' do
       it 'sets the parser_klass' do
-        described_class.parser(Tinwe::Parser)
-        expect(described_class.parser_klass).to eq(Tinwe::Parser)
+        described_class.parser(Tinwe::Parsers::Base)
+        expect(described_class.parser_klass).to eq(Tinwe::Parsers::Base)
       end
     end
 
@@ -52,7 +52,7 @@ RSpec.describe Tinwe::Command do
     end
 
     context 'with a parser specified' do
-      let(:parser_klass) { Tinwe::Parser }
+      let(:parser_klass) { Tinwe::Parsers::Base }
 
       it 'sets the parser' do
         expect(subject.parser).not_to be_nil
