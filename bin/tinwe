@@ -7,7 +7,7 @@ require 'byebug'
 require_relative '../lib/tinwe'
 
 begin
-  $stdout.puts Tinwe::MainCommand.new(ARGV).execute
+  $stdout.puts Tinwe::Commands::Main.new(ARGV).execute
 rescue Tinwe::Errors::CommandError => e
   warn e.message
   exit(1)
