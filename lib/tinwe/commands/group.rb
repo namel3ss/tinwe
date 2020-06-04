@@ -21,9 +21,7 @@ module Tinwe
       end
 
       def execute
-        unless respond_to?(parser.command)
-          raise Tinwe::Errors::UnknownCommand, parser.parser
-        end
+        raise Tinwe::Errors::UnknownCommand, parser.parser unless respond_to?(parser.command)
 
         send(parser.command, parser.arguments)
       end

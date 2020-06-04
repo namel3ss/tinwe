@@ -5,7 +5,6 @@ module Tinwe
     # Parser for the main command
     class Main < Base
       def options(opts) # rubocop:disable Metrics/MethodLength
-        # rubocop:disable Layout/LineLength
         opts.separator ''
         opts.separator 'Available commands:'
         opts.separator ''
@@ -19,7 +18,6 @@ module Tinwe
           '-v',
           'Display version'
         ) { @command = 'version' }
-        # rubocop:enable Layout/LineLength
       end
 
       def banner

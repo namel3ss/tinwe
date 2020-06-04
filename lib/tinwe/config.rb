@@ -7,7 +7,9 @@ module Tinwe
   # Provides read and write capabilities for the configuration of the app
   class Config
     def add_catalog(name, path)
-      # TODO: Validations
+      path = File.expand_path(path)
+
+      raise ::Tinwe::Errors::CatalogNotFound unless File.exist?(path)
 
       settings[:catalogs] ||= []
 
