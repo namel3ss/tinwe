@@ -11,6 +11,7 @@ RSpec.describe Tinwe::Parsers::Main do
       Available commands:
 
           shell                            start an interactive ruby shell
+          catalog                          manage your catalogs
 
       Options for tinwe:
 

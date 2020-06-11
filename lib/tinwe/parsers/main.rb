@@ -9,6 +9,7 @@ module Tinwe
         opts.separator 'Available commands:'
         opts.separator ''
         opts.separator '    shell                            start an interactive ruby shell'
+        opts.separator '    catalog                          manage your catalogs'
         opts.separator ''
         opts.separator 'Options for tinwe:'
         opts.separator ''

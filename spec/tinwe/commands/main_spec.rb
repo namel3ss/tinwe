@@ -12,6 +12,11 @@ RSpec.describe Tinwe::Commands::Main do
       .to include(Tinwe::Commands::Version.command_key)
   end
 
+  it 'has a catalog command' do
+    expect(described_class.instance_methods)
+      .to include(Tinwe::Commands::Catalog.command_key)
+  end
+
   it 'has a shell command' do
     expect(described_class.instance_methods)
       .to include(Tinwe::Commands::Shell.command_key)
