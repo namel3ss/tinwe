@@ -12,11 +12,11 @@ RSpec.describe Tinwe::Config do
     allow(dummy_file).to receive(:write).and_call_original
     allow(subject).to receive(:init)
     allow(subject).to receive(:exists?).and_return(exists)
-    allow(subject).to receive(:settings).and_return(YAML.safe_load(dummy_file.string, [Symbol]))
+    allow(subject).to receive(:settings).and_return(YAML.safe_load(dummy_file.string))
   end
 
   describe '#save' do
-    let(:settings) { { foo: :bar } }
+    let(:settings) { { 'foo' => 'bar' } }
 
     before do
       subject.save
@@ -39,7 +39,7 @@ RSpec.describe Tinwe::Config do
 
     context 'when the config exists already' do
       let(:exists) { true }
-      let(:new_settings) { { bar: :foo } }
+      let(:new_settings) { { 'bar' => 'foo' } }
 
       before do
         allow(subject).to receive(:settings).and_return(new_settings)
@@ -68,18 +68,18 @@ RSpec.describe Tinwe::Config do
       end
 
       it 'adds the catlog' do
-        catalogs = subject.settings[:catalogs]
+        catalogs = subject.settings['catalogs']
 
         expect(catalogs).not_to be_nil
         expect(catalogs.size).to equal(1)
-        expect(catalogs.first[:name]).to eq(catalog_name)
-        expect(catalogs.first[:path]).to eq(catalog_path)
+        expect(catalogs.first['name']).to eq(catalog_name)
+        expect(catalogs.first['path']).to eq(catalog_path)
       end
 
       context 'with the catalog already existing' do
         before do
           subject.add_catalog(catalog_name, catalog_path)
-          expect(subject.settings[:catalogs].first[:name]).to eq(catalog_name)
+          expect(subject.settings['catalogs'].first['name']).to eq(catalog_name)
         end
 
         context 'with different path' do
@@ -88,8 +88,8 @@ RSpec.describe Tinwe::Config do
           it 'updates the catalog' do
             subject.add_catalog(catalog_name, new_catalog_path)
 
-            expect(subject.settings[:catalogs].first[:name]).to eq(catalog_name)
-            expect(subject.settings[:catalogs].first[:path]).to eq(new_catalog_path)
+            expect(subject.settings['catalogs'].first['name']).to eq(catalog_name)
+            expect(subject.settings['catalogs'].first['path']).to eq(new_catalog_path)
           end
         end
 
@@ -97,8 +97,8 @@ RSpec.describe Tinwe::Config do
           it 'does not change the catalog' do
             subject.add_catalog(catalog_name, catalog_path)
 
-            expect(subject.settings[:catalogs].first[:name]).to eq(catalog_name)
-            expect(subject.settings[:catalogs].first[:path]).to eq(catalog_path)
+            expect(subject.settings['catalogs'].first['name']).to eq(catalog_name)
+            expect(subject.settings['catalogs'].first['path']).to eq(catalog_path)
           end
         end
       end
@@ -114,7 +114,7 @@ RSpec.describe Tinwe::Config do
           .to raise_error(Tinwe::Errors::CatalogNotFound)
 
         expect(subject).not_to have_received(:save)
-        expect(subject.settings[:catalog]).to be_nil
+        expect(subject.settings['catalogs']).to be_nil
       end
     end
   end

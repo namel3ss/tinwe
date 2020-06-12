@@ -11,11 +11,11 @@ module Tinwe
 
       raise ::Tinwe::Errors::CatalogNotFound unless File.exist?(path)
 
-      settings[:catalogs] ||= []
+      settings['catalogs'] ||= []
 
-      catalogs = settings[:catalogs].reject { |c| c[:name] == name }
-      catalogs << { name: name, path: path }
-      settings[:catalogs] = catalogs
+      catalogs = settings['catalogs'].reject { |c| c['name'] == name }
+      catalogs << { 'name' => name, 'path' => path }
+      settings['catalogs'] = catalogs
 
       save
     end
@@ -24,11 +24,13 @@ module Tinwe
       init unless exists?
 
       File.open(config_path, 'w') { |f| f.write(settings.to_yaml) }
+
+      true
     end
 
     def settings
-      @settings ||= if File.exist?(config)
-                      YAML.safe_load(File.open(config).read, [Symbol])
+      @settings ||= if File.exist?(config_path)
+                      YAML.safe_load(File.open(config_path).read)
                     else
                       {}
                     end
@@ -45,7 +47,7 @@ module Tinwe
     end
 
     def config_path
-      Dir.home + '.config/tinwe/config.yml'
+      Dir.home + '/.config/tinwe/config.yml'
     end
   end
 end
