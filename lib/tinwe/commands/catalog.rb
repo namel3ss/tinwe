@@ -6,6 +6,7 @@ module Tinwe
     class Catalog < Group
       key :catalog
       parser Tinwe::Parsers::Catalog
+      commands AddCatalog
     end
   end
 end
