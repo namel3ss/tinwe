@@ -9,6 +9,8 @@ module Tinwe
       attr_reader :parser, :command, :arguments
 
       def initialize(args)
+        @arguments = args
+
         @parser = OptionParser.new do |opts|
           opts.banner = banner
 
@@ -16,9 +18,6 @@ module Tinwe
         end
 
         parser.parse!(args)
-
-        @command ||= args.shift
-        @arguments = args
       end
 
       private

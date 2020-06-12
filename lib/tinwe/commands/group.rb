@@ -4,6 +4,8 @@ module Tinwe
   module Commands
     # Base class for command groups
     class Group < Base
+      parser Tinwe::Parsers::Group
+
       class << self
         def commands(*commands)
           commands.each do |command_klass|

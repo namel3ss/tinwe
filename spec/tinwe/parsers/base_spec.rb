@@ -30,37 +30,11 @@ RSpec.describe Tinwe::Parsers::Base do
   end
 
   describe '.new' do
-    context 'with no args' do
-      it do
-        expect(subject.command).to be_nil
-        expect(subject.arguments).to be_empty
-        expect(subject.parser).not_to be_nil
-        expect(subject.parser).to be_kind_of(OptionParser)
-      end
-    end
-
-    context 'with any command' do
-      let(:command) { 'some_command' }
-      let(:args) { [command] }
-
-      it do
-        expect(subject.command).to eq(command)
-        expect(subject.arguments).to be_empty
-        expect(subject.parser).not_to be_nil
-        expect(subject.parser).to be_kind_of(OptionParser)
-      end
-    end
-
-    context 'with chain of commands' do
-      let(:command) { 'some_command' }
-      let(:subcommand) { 'other_command' }
-      let(:args) { [command, subcommand] }
-
-      it do
-        expect(subject.command).to eq(command)
-        expect(subject.arguments.size).to eq(1)
-        expect(subject.arguments.first).to eq(subcommand)
-      end
+    it do
+      expect(subject.command).to be_nil
+      expect(subject.arguments).to be_empty
+      expect(subject.parser).not_to be_nil
+      expect(subject.parser).to be_kind_of(OptionParser)
     end
   end
 end

@@ -19,7 +19,7 @@ RSpec.describe Tinwe::Parsers::Main do
     MSG
   end
 
-  it { expect(described_class).to be < Tinwe::Parsers::Base }
+  it { expect(described_class).to be < Tinwe::Parsers::Group }
 
   describe 'parser' do
     it { expect(subject.parser.to_s).to eq(usage) }

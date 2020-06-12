@@ -3,7 +3,7 @@
 module Tinwe
   module Parsers
     # Parser for the main command
-    class Main < Base
+    class Main < Group
       def options(opts) # rubocop:disable Metrics/MethodLength
         opts.separator ''
         opts.separator 'Available commands:'

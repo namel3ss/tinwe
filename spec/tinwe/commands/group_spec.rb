@@ -5,8 +5,8 @@ RSpec.describe Tinwe::Commands::Group do
 
   let(:args) { %w[command] }
 
-  before do
-    described_class.parser(Tinwe::Parsers::Base)
+  it 'has a parser' do
+    expect(described_class.parser_klass).to eq(Tinwe::Parsers::Group)
   end
 
   context 'class' do
