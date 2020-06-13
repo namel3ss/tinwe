@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 
 ruby '~> 2.6.0'
 
+gem 'activerecord'
 gem 'sqlite3'
 gem 'zeitwerk'
 
