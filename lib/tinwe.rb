@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'active_record'
 require 'zeitwerk'
 loader = Zeitwerk::Loader.for_gem
 loader.setup
@@ -12,4 +13,8 @@ loader.setup
 module Tinwe
   VERSION = '0.0.1'
   HOME = 'https://github.com/namel3ss/tinwe'
+
+  def self.config
+    Config.new
+  end
 end

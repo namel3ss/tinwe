@@ -8,8 +8,7 @@ module Tinwe
       parser ::Tinwe::Parsers::AddCatalog
 
       def execute
-        config = Config.new
-        config.add_catalog(catalog_name, catalog_path)
+        Tinwe.config.add_catalog(catalog_name, catalog_path)
       end
 
       private

@@ -20,6 +20,10 @@ module Tinwe
       save
     end
 
+    def find_catalog(name)
+      settings['catalogs'].select { |c| c['name'] == name }.first
+    end
+
     def save
       init unless exists?
 

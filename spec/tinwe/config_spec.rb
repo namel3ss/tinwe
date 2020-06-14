@@ -118,4 +118,27 @@ RSpec.describe Tinwe::Config do
       end
     end
   end
+
+  describe '#find_catalog' do
+    let(:settings) { { 'catalogs' => [{ 'name' => 'dummy', 'path' => 'dummy_path' }] } }
+    let(:catalog) { subject.find_catalog(catalog_name) }
+
+    context 'with existing catalog' do
+      let(:catalog_name) { 'dummy' }
+
+      it 'finds the catalog' do
+        expect(catalog).not_to be_nil
+        expect(catalog['name']).to eq(catalog_name)
+        expect(catalog['path']).to eq(settings['catalogs'].first['path'])
+      end
+    end
+
+    context 'with not existing catalog' do
+      let(:catalog_name) { 'foo' }
+
+      it 'returns nil' do
+        expect(catalog).to be_nil
+      end
+    end
+  end
 end
