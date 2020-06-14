@@ -17,6 +17,11 @@ RSpec.describe Tinwe::Commands::Main do
       .to include(Tinwe::Commands::Catalog.command_key)
   end
 
+  it 'has a stats command' do
+    expect(described_class.instance_methods)
+      .to include(Tinwe::Commands::Stats.command_key)
+  end
+
   it 'has a shell command' do
     expect(described_class.instance_methods)
       .to include(Tinwe::Commands::Shell.command_key)

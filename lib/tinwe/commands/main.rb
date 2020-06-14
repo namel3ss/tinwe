@@ -5,7 +5,7 @@ module Tinwe
     # The main command for the application. Acts as an entry point
     # and invokes other commands when needed.
     class Main < Group
-      commands Catalog, Version, Shell
+      commands Catalog, Stats, Version, Shell
       parser Tinwe::Parsers::Main
       key :main
     end
